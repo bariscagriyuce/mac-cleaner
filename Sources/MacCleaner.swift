@@ -3,7 +3,13 @@ import AppKit
 
 // MARK: - Yardımcılar
 
-func fmt(_ b: Int64) -> String { ByteCountFormatter.string(fromByteCount: max(b, 0), countStyle: .file) }
+private let byteFormatter: ByteCountFormatter = {
+    let f = ByteCountFormatter()
+    f.countStyle = .file
+    f.allowsNonnumericFormatting = false   // "Zero KB" yerine "0 KB"
+    return f
+}()
+func fmt(_ b: Int64) -> String { byteFormatter.string(fromByteCount: max(b, 0)) }
 func expand(_ p: String) -> String { (p as NSString).expandingTildeInPath }
 func abbreviate(_ p: String) -> String {
     let h = NSHomeDirectory()
@@ -263,7 +269,7 @@ enum Scanner {
     static func makeEntry(_ url: URL, kind: Kind?) -> Entry {
         let rv = try? url.resourceValues(forKeys: Set(listKeys))
         var e = Entry(id: url.path, url: url, name: url.lastPathComponent,
-                      detail: abbreviate(url.deletingLastPathComponent().path),
+                      detail: kind == nil ? "" : abbreviate(url.deletingLastPathComponent().path),
                       modified: rv?.contentModificationDate, isDirectory: rv?.isDirectory ?? false)
         if kind == .simulators, let d = NSDictionary(contentsOf: url.appendingPathComponent("device.plist")) {
             let name = d["name"] as? String ?? url.lastPathComponent
@@ -913,8 +919,10 @@ struct CategoryView: View {
                            showReveal: cat.def.kind != .snapshots,
                            onOpen: { e in NSWorkspace.shared.activateFileViewerSelecting([e.url]) },
                            onDelete: { ids in askDelete(cat.entries.filter { ids.contains($0.id) }) })
+                .frame(maxHeight: .infinity)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .task { if !cat.scanned { await model.scan(cat) } }
         .confirmationDialog(confirmTitle, isPresented: $showConfirm, titleVisibility: .visible) {
             if cat.def.kind == .trash || cat.def.kind == .snapshots {
@@ -952,7 +960,7 @@ struct CategoryView: View {
                     Text(fmt(cat.total)).font(.title2.bold()).monospacedDigit()
                 }
             }
-            Text(cat.def.detail).foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            Text(cat.def.detail).foregroundStyle(.secondary).lineLimit(3)
             HStack {
                 Button { Task { await model.scan(cat) } } label: { Label(L("Rescan"), systemImage: "arrow.clockwise") }
                     .disabled(cat.scanning)
