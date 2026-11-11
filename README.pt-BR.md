@@ -1,0 +1,69 @@
+# YUCE Mac Cleaner
+
+[English](README.md) · [Türkçe](README.tr.md) · **Português (Brasil)**
+
+Um app nativo para macOS que mostra o que existe dentro dos misteriosos **“Dados do Sistema”** nos ajustes de armazenamento e ajuda você a recuperar espaço em disco com segurança.
+
+## Recursos
+
+- **Visão geral do disco:** espaço usado e livre, e quanto cada categoria ocupa.
+- **Limpeza Rápida:** um botão que remove apenas dados seguros e recriáveis: caches de apps, logs, caches de ferramentas de desenvolvimento, DerivedData / DeviceSupport do Xcode, simuladores indisponíveis e a Lixeira. Nunca mexe em dados pessoais, configurações de apps nem nos Archives do Xcode, e ignora os caches de apps que estão abertos.
+- **13 categorias**, cada uma marcada como *Pode apagar com segurança*, *Revise antes de apagar* ou *Apenas informativo*:
+  Caches de apps · Logs e relatórios de falhas · Dados do Xcode · Simuladores iOS · Caches de ferramentas de desenvolvimento (npm, pip, uv, Gradle, Cargo, Maven, Go…) · Máquinas virtuais, Android e Docker · Backups de iPhone/iPad · Dados de suporte de apps · Anexos do Mail e Mensagens · Downloads · Lixeira · Snapshots locais do Time Machine · Arquivos temporários do sistema
+- Botões **Selecionar Tudo / Apagar Selecionados** em todas as categorias, além de clique direito → *Mostrar no Finder*.
+- **Explorador de Pastas:** navegue por qualquer pasta ordenada por tamanho e entre nela com um clique duplo para descobrir o que está ocupando o disco.
+- **Seguro por padrão:** os itens vão para a Lixeira (podem ser restaurados), a menos que você escolha *Apagar Permanentemente*. Pastas críticas como sua pasta pessoal, Documentos, Mesa, `~/Library` e `/System` são protegidas e não podem ser apagadas.
+- **Idiomas:** inglês, turco e português do Brasil. O app segue o idioma do macOS e usa inglês como padrão.
+
+## Requisitos
+
+- macOS 14 Sonoma ou posterior (Apple silicon ou Intel)
+- Xcode ou as Ferramentas de Linha de Comando do Xcode (`xcode-select --install`) para compilar
+
+## Compilar e executar
+
+```bash
+git clone https://github.com/bariscagriyuce/mac-cleaner.git
+cd mac-cleaner
+./build.sh
+open "YUCE Mac Cleaner.app"
+```
+
+Depois, você pode arrastar o `YUCE Mac Cleaner.app` para a pasta Aplicativos.
+
+## Acesso Total ao Disco (recomendado)
+
+Alguns locais, como a Lixeira, os dados do Mail e os backups do iPhone, são protegidos pelo macOS. Para analisá-los:
+
+1. Abra **Ajustes do Sistema › Privacidade e Segurança › Acesso Total ao Disco**
+2. Clique em **+** e adicione o **YUCE Mac Cleaner**
+3. Feche e abra o app novamente
+
+O botão *Abrir Ajustes* no app leva você direto para lá.
+
+## Idioma
+
+O idioma é escolhido a partir dos idiomas preferidos do macOS (Ajustes do Sistema › Geral › Idioma e Região):
+
+| Idioma do sistema | Idioma do app |
+|---|---|
+| Turco | Turco |
+| Português (qualquer região) | Português do Brasil |
+| Inglês | Inglês |
+| Qualquer outro | Inglês |
+
+Você também pode escolher um idioma só para este app em **Ajustes do Sistema › Geral › Idioma e Região › Aplicativos**.
+
+## Estrutura do projeto
+
+```
+Sources/MacCleaner.swift     App, análise, lógica de exclusão e telas SwiftUI
+Sources/Localization.swift   Detecção de idioma e traduções (tr, pt-BR)
+build.sh                     Compila o pacote .app com swiftc
+```
+
+Para adicionar um idioma, inclua um dicionário em `Localization.swift`. As chaves são os textos em inglês.
+
+## Aviso
+
+Apagar arquivos é sempre por sua conta e risco. Leia as descrições das categorias, prefira *Mover para a Lixeira* e mantenha backups dos dados importantes.
