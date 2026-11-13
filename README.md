@@ -15,6 +15,14 @@ A native macOS app that shows what is inside the mysterious **“System Data”*
 - **Safe by default:** items are moved to the Trash (restorable) unless you choose *Delete Permanently*. Critical folders such as your home folder, Documents, Desktop, `~/Library` and `/System` are protected and cannot be deleted.
 - **Languages:** English, Turkish and Brazilian Portuguese. The app follows your macOS language and falls back to English.
 
+## Download
+
+1. Download the latest **`YUCE-Mac-Cleaner-x.y.z.dmg`** from the [Releases page](https://github.com/bariscagriyuce/mac-cleaner/releases/latest).
+2. Open the DMG and drag **YUCE Mac Cleaner** into the **Applications** folder.
+3. Launch it from Applications or Launchpad.
+
+The app is signed with a Developer ID and notarized by Apple, so it opens without security warnings. It runs on both Apple silicon and Intel Macs (macOS 14 or later).
+
 ## Requirements
 
 - macOS 14 Sonoma or later (Apple silicon or Intel)
@@ -30,6 +38,8 @@ open "YUCE Mac Cleaner.app"
 ```
 
 You can then drag `YUCE Mac Cleaner.app` to your Applications folder.
+
+To build a signed and notarized DMG yourself, see the comments at the top of `release.sh`.
 
 ## Full Disk Access (recommended)
 
@@ -59,7 +69,8 @@ You can also choose a language for this app only under **System Settings › Gen
 ```
 Sources/MacCleaner.swift     App, scanner, deletion logic and SwiftUI views
 Sources/Localization.swift   Language detection and translations (tr, pt-BR)
-build.sh                     Builds the .app bundle with swiftc
+build.sh                     Builds the .app bundle (universal) with swiftc
+release.sh                   Signs, notarizes and packages a DMG
 ```
 
 To add a language, add a dictionary to `Localization.swift`. The keys are the English texts.

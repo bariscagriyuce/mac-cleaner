@@ -15,6 +15,14 @@ Depolama ayarlarındaki gizemli **“Sistem Verileri”**nin içinde ne olduğun
 - **Varsayılan olarak güvenli:** *Kalıcı Olarak Sil* seçmediğiniz sürece dosyalar Çöp Kutusuna taşınır, yani geri alınabilir. Ev klasörü, Belgeler, Masaüstü, `~/Library` ve `/System` gibi kritik klasörler korumalıdır, silinemez.
 - **Diller:** Türkçe, İngilizce ve Brezilya Portekizcesi. Uygulama macOS dilinizi kullanır; dil desteklenmiyorsa İngilizce açılır.
 
+## İndirme
+
+1. [Sürümler sayfasından](https://github.com/bariscagriyuce/mac-cleaner/releases/latest) en yeni **`YUCE-Mac-Cleaner-x.y.z.dmg`** dosyasını indirin.
+2. DMG'yi açın ve **YUCE Mac Cleaner**'ı **Uygulamalar** klasörüne sürükleyin.
+3. Uygulamalar klasöründen veya Launchpad'den açın.
+
+Uygulama Developer ID ile imzalı ve Apple tarafından onaylıdır (notarized), bu yüzden güvenlik uyarısı olmadan açılır. Hem Apple silicon hem Intel Mac'lerde çalışır (macOS 14 veya üzeri).
+
 ## Gereksinimler
 
 - macOS 14 Sonoma veya üzeri (Apple silicon veya Intel)
@@ -30,6 +38,8 @@ open "YUCE Mac Cleaner.app"
 ```
 
 Ardından `YUCE Mac Cleaner.app` dosyasını Uygulamalar klasörüne sürükleyebilirsiniz.
+
+İmzalı ve onaylı (notarized) bir DMG'yi kendiniz oluşturmak için `release.sh` dosyasının başındaki açıklamalara bakın.
 
 ## Tam Disk Erişimi (önerilir)
 
@@ -59,7 +69,8 @@ Yalnızca bu uygulama için ayrı bir dil de seçebilirsiniz: **Sistem Ayarları
 ```
 Sources/MacCleaner.swift     Uygulama, tarama, silme mantığı ve SwiftUI ekranları
 Sources/Localization.swift   Dil algılama ve çeviriler (tr, pt-BR)
-build.sh                     .app paketini swiftc ile derler
+build.sh                     .app paketini (universal) swiftc ile derler
+release.sh                   DMG oluşturur, imzalar ve Apple onayına gönderir
 ```
 
 Yeni bir dil eklemek için `Localization.swift` dosyasına bir sözlük ekleyin. Anahtarlar İngilizce metinlerdir.

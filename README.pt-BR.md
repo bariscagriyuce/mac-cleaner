@@ -15,6 +15,14 @@ Um app nativo para macOS que mostra o que existe dentro dos misteriosos **“Dad
 - **Seguro por padrão:** os itens vão para a Lixeira (podem ser restaurados), a menos que você escolha *Apagar Permanentemente*. Pastas críticas como sua pasta pessoal, Documentos, Mesa, `~/Library` e `/System` são protegidas e não podem ser apagadas.
 - **Idiomas:** inglês, turco e português do Brasil. O app segue o idioma do macOS e usa inglês como padrão.
 
+## Download
+
+1. Baixe o arquivo **`YUCE-Mac-Cleaner-x.y.z.dmg`** mais recente na [página de Releases](https://github.com/bariscagriyuce/mac-cleaner/releases/latest).
+2. Abra o DMG e arraste o **YUCE Mac Cleaner** para a pasta **Aplicativos**.
+3. Abra o app pela pasta Aplicativos ou pelo Launchpad.
+
+O app é assinado com Developer ID e notarizado pela Apple, então abre sem avisos de segurança. Funciona em Macs com Apple silicon e Intel (macOS 14 ou posterior).
+
 ## Requisitos
 
 - macOS 14 Sonoma ou posterior (Apple silicon ou Intel)
@@ -30,6 +38,8 @@ open "YUCE Mac Cleaner.app"
 ```
 
 Depois, você pode arrastar o `YUCE Mac Cleaner.app` para a pasta Aplicativos.
+
+Para gerar você mesmo um DMG assinado e notarizado, veja os comentários no início do `release.sh`.
 
 ## Acesso Total ao Disco (recomendado)
 
@@ -59,7 +69,8 @@ Você também pode escolher um idioma só para este app em **Ajustes do Sistema 
 ```
 Sources/MacCleaner.swift     App, análise, lógica de exclusão e telas SwiftUI
 Sources/Localization.swift   Detecção de idioma e traduções (tr, pt-BR)
-build.sh                     Compila o pacote .app com swiftc
+build.sh                     Compila o pacote .app (universal) com swiftc
+release.sh                   Assina, notariza e gera o DMG
 ```
 
 Para adicionar um idioma, inclua um dicionário em `Localization.swift`. As chaves são os textos em inglês.
