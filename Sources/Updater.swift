@@ -413,7 +413,7 @@ struct UpdateAlerts: ViewModifier {
     func body(content: Content) -> some View {
         @Bindable var updater = updater
         content
-            .sheet(isPresented: $updater.showSheet) { UpdateSheet() }
+            .sheet(isPresented: $updater.showSheet) { UpdateSheet().environment(updater) }
             .alert(L("You're up to date!"), isPresented: Binding(
                 get: { updater.phase == .upToDate }, set: { if !$0 { updater.phase = .idle } })) {
                 Button(L("OK")) { updater.phase = .idle }

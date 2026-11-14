@@ -569,11 +569,12 @@ struct YUCECleanerApp: App {
     var body: some Scene {
         WindowGroup("YUCE Cleaner") {
             ContentView()
+                .modifier(UpdateAlerts())
+                .task { updater.checkOnLaunch() }
+                // Environment last, so every view and modifier above can read it.
                 .environment(model)
                 .environment(explorer)
                 .environment(updater)
-                .modifier(UpdateAlerts())
-                .task { updater.checkOnLaunch() }
                 .frame(minWidth: 1000, minHeight: 640)
         }
         .commands { UpdateCommands(updater: updater) }

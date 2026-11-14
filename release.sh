@@ -9,7 +9,7 @@
 set -e
 cd "$(dirname "$0")"
 
-export VERSION="${VERSION:-1.2.0}"
+export VERSION="${VERSION:-1.2.1}"
 export SIGN_ID="${SIGN_ID:-Developer ID Application: BARIS YUCE (MPRDU9BAS3)}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-YUCE-notary}"
 APP="YUCE Cleaner.app"

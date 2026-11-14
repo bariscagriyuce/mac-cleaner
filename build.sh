@@ -7,7 +7,7 @@
 set -e
 cd "$(dirname "$0")"
 
-VERSION="${VERSION:-1.2.0}"
+VERSION="${VERSION:-1.2.1}"
 BUILD="$(git rev-list --count HEAD 2>/dev/null || echo 1)"
 
 APP="YUCE Cleaner.app"
