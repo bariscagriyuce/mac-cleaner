@@ -5,15 +5,15 @@
 #   xcrun notarytool store-credentials "YUCE-notary" --apple-id <APPLE_ID> --team-id MPRDU9BAS3
 #
 # Usage:
-#   ./release.sh            → dist/YUCE-Mac-Cleaner-<version>.dmg
+#   ./release.sh            → dist/YUCE-Cleaner-<version>.dmg
 set -e
 cd "$(dirname "$0")"
 
-export VERSION="${VERSION:-1.1.0}"
+export VERSION="${VERSION:-1.2.0}"
 export SIGN_ID="${SIGN_ID:-Developer ID Application: BARIS YUCE (MPRDU9BAS3)}"
 NOTARY_PROFILE="${NOTARY_PROFILE:-YUCE-notary}"
-APP="YUCE Mac Cleaner.app"
-DMG="dist/YUCE-Mac-Cleaner-$VERSION.dmg"
+APP="YUCE Cleaner.app"
+DMG="dist/YUCE-Cleaner-$VERSION.dmg"
 
 ./build.sh
 
@@ -22,7 +22,7 @@ rm -rf dist && mkdir -p dist
 STAGE="$(mktemp -d)"
 cp -R "$APP" "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
-hdiutil create -volname "YUCE Mac Cleaner" -srcfolder "$STAGE" -ov -format UDZO "$DMG" >/dev/null
+hdiutil create -volname "YUCE Cleaner" -srcfolder "$STAGE" -ov -format UDZO "$DMG" >/dev/null
 rm -rf "$STAGE"
 codesign --force --timestamp --sign "$SIGN_ID" "$DMG"
 

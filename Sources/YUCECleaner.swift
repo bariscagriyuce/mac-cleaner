@@ -561,17 +561,22 @@ final class ExplorerModel {
 // MARK: - Uygulama
 
 @main
-struct MacCleanerApp: App {
+struct YUCECleanerApp: App {
     @State private var model = AppModel()
     @State private var explorer = ExplorerModel()
+    @State private var updater = Updater()
 
     var body: some Scene {
-        WindowGroup("YUCE Mac Cleaner") {
+        WindowGroup("YUCE Cleaner") {
             ContentView()
                 .environment(model)
                 .environment(explorer)
+                .environment(updater)
+                .modifier(UpdateAlerts())
+                .task { updater.checkOnLaunch() }
                 .frame(minWidth: 1000, minHeight: 640)
         }
+        .commands { UpdateCommands(updater: updater) }
     }
 }
 
@@ -698,6 +703,7 @@ struct OverviewView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                UpdateBanner()
                 Text(L("Disk Status")).font(.largeTitle.bold())
 
                 let used = max(model.diskTotal - model.diskFree, 0)
@@ -780,6 +786,8 @@ struct OverviewView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(6)
                 }
+
+                VersionFooter()
             }
             .padding(24)
         }
@@ -881,7 +889,7 @@ struct DeniedBanner: View {
             Image(systemName: "lock.fill").foregroundStyle(.orange)
             VStack(alignment: .leading, spacing: 4) {
                 Text(L("Some folders could not be read: %@", paths.joined(separator: ", "))).bold()
-                Text(L("Add YUCE Mac Cleaner in System Settings › Privacy & Security › Full Disk Access, then reopen the app."))
+                Text(L("Add YUCE Cleaner in System Settings › Privacy & Security › Full Disk Access, then reopen the app."))
                     .font(.caption).foregroundStyle(.secondary)
             }
             Spacer()

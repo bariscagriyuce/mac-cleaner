@@ -1,8 +1,8 @@
-# YUCE Mac Cleaner
+# YUCE Cleaner
 
 [English](README.md) · [Türkçe](README.tr.md) · **Português (Brasil)**
 
-Um app nativo para macOS que mostra o que existe dentro dos misteriosos **“Dados do Sistema”** nos ajustes de armazenamento e ajuda você a recuperar espaço em disco com segurança.
+O **YUCE Cleaner para Mac** é um app nativo para macOS que mostra o que existe dentro dos misteriosos **“Dados do Sistema”** nos ajustes de armazenamento e ajuda você a recuperar espaço em disco com segurança.
 
 ## Recursos
 
@@ -14,11 +14,12 @@ Um app nativo para macOS que mostra o que existe dentro dos misteriosos **“Dad
 - **Explorador de Pastas:** navegue por qualquer pasta ordenada por tamanho e entre nela com um clique duplo para descobrir o que está ocupando o disco.
 - **Seguro por padrão:** os itens vão para a Lixeira (podem ser restaurados), a menos que você escolha *Apagar Permanentemente*. Pastas críticas como sua pasta pessoal, Documentos, Mesa, `~/Library` e `/System` são protegidas e não podem ser apagadas.
 - **Idiomas:** inglês, turco e português do Brasil. O app segue o idioma do macOS e usa inglês como padrão.
+- **Atualizações automáticas:** o app verifica novas versões no GitHub, mostra as notas da versão e instala a atualização com um clique. Cada atualização é verificada pela assinatura de código do desenvolvedor antes de ser instalada. Você também pode usar *YUCE Cleaner › Verificar Atualizações…* ou desativar a verificação automática no mesmo menu.
 
 ## Download
 
-1. Baixe o arquivo **`YUCE-Mac-Cleaner-x.y.z.dmg`** mais recente na [página de Releases](https://github.com/bariscagriyuce/mac-cleaner/releases/latest).
-2. Abra o DMG e arraste o **YUCE Mac Cleaner** para a pasta **Aplicativos**.
+1. Baixe o arquivo **`YUCE-Cleaner-x.y.z.dmg`** mais recente na [página de Releases](https://github.com/bariscagriyuce/mac-cleaner/releases/latest).
+2. Abra o DMG e arraste o **YUCE Cleaner** para a pasta **Aplicativos**.
 3. Abra o app pela pasta Aplicativos ou pelo Launchpad.
 
 O app é assinado com Developer ID e notarizado pela Apple, então abre sem avisos de segurança. Funciona em Macs com Apple silicon e Intel (macOS 14 ou posterior).
@@ -34,10 +35,10 @@ O app é assinado com Developer ID e notarizado pela Apple, então abre sem avis
 git clone https://github.com/bariscagriyuce/mac-cleaner.git
 cd mac-cleaner
 ./build.sh
-open "YUCE Mac Cleaner.app"
+open "YUCE Cleaner.app"
 ```
 
-Depois, você pode arrastar o `YUCE Mac Cleaner.app` para a pasta Aplicativos.
+Depois, você pode arrastar o `YUCE Cleaner.app` para a pasta Aplicativos.
 
 Para gerar você mesmo um DMG assinado e notarizado, veja os comentários no início do `release.sh`.
 
@@ -46,7 +47,7 @@ Para gerar você mesmo um DMG assinado e notarizado, veja os comentários no in�
 Alguns locais, como a Lixeira, os dados do Mail e os backups do iPhone, são protegidos pelo macOS. Para analisá-los:
 
 1. Abra **Ajustes do Sistema › Privacidade e Segurança › Acesso Total ao Disco**
-2. Clique em **+** e adicione o **YUCE Mac Cleaner**
+2. Clique em **+** e adicione o **YUCE Cleaner**
 3. Feche e abra o app novamente
 
 O botão *Abrir Ajustes* no app leva você direto para lá.
@@ -67,7 +68,8 @@ Você também pode escolher um idioma só para este app em **Ajustes do Sistema 
 ## Estrutura do projeto
 
 ```
-Sources/MacCleaner.swift     App, análise, lógica de exclusão e telas SwiftUI
+Sources/YUCECleaner.swift    App, análise, lógica de exclusão e telas SwiftUI
+Sources/Updater.swift        Verificação e instalação de atualizações (GitHub Releases)
 Sources/Localization.swift   Detecção de idioma e traduções (tr, pt-BR)
 build.sh                     Compila o pacote .app (universal) com swiftc
 release.sh                   Assina, notariza e gera o DMG
@@ -78,3 +80,5 @@ Para adicionar um idioma, inclua um dicionário em `Localization.swift`. As chav
 ## Aviso
 
 Apagar arquivos é sempre por sua conta e risco. Leia as descrições das categorias, prefira *Mover para a Lixeira* e mantenha backups dos dados importantes.
+
+Mac e macOS são marcas registradas da Apple Inc. O YUCE Cleaner é um app independente, sem vínculo com a Apple e não endossado por ela.

@@ -155,8 +155,8 @@ let trStrings: [String: String] = [
     "Show in Finder": "Finder'da Göster",
     "Delete…": "Sil…",
     "Some folders could not be read: %@": "Bazı klasörler okunamadı: %@",
-    "Add YUCE Mac Cleaner in System Settings › Privacy & Security › Full Disk Access, then reopen the app.":
-        "Sistem Ayarları › Gizlilik ve Güvenlik › Tam Disk Erişimi bölümünden YUCE Mac Cleaner'ı ekleyip uygulamayı yeniden açın.",
+    "Add YUCE Cleaner in System Settings › Privacy & Security › Full Disk Access, then reopen the app.":
+        "Sistem Ayarları › Gizlilik ve Güvenlik › Tam Disk Erişimi bölümünden YUCE Cleaner'ı ekleyip uygulamayı yeniden açın.",
     "Open Settings": "Ayarları Aç",
 
     // Kategori ekranı
@@ -201,6 +201,37 @@ let trStrings: [String: String] = [
     "%ld items selected · %@": "%ld öğe seçildi · %@",
     "Delete %ld items?": "%ld öğe silinsin mi?",
     "\n\nTotal: %@": "\n\nToplam: %@",
+
+    // Güncellemeler
+    "Check for Updates…": "Güncellemeleri Denetle…",
+    "Automatically Check for Updates": "Güncellemeleri Otomatik Denetle",
+    "A new version of YUCE Cleaner is available!": "YUCE Cleaner'ın yeni bir sürümü var!",
+    "YUCE Cleaner %@ is available — you have %@. Would you like to install it now?":
+        "YUCE Cleaner %@ yayınlandı; sizdeki sürüm %@. Şimdi yüklemek ister misiniz?",
+    "Release Notes": "Sürüm Notları",
+    "Skip This Version": "Bu Sürümü Atla",
+    "Remind Me Later": "Daha Sonra Hatırlat",
+    "Install and Relaunch": "Yükle ve Yeniden Başlat",
+    "Downloading… %ld%%": "İndiriliyor… %%%ld",
+    "Installing…": "Yükleniyor…",
+    "View on GitHub": "GitHub'da Görüntüle",
+    "You're up to date!": "Uygulamanız güncel!",
+    "YUCE Cleaner %@ is the latest version.": "YUCE Cleaner %@ en son sürüm.",
+    "Update failed": "Güncelleme başarısız",
+    "Open Download Page": "İndirme Sayfasını Aç",
+    "Install the update manually": "Güncellemeyi elle yükleyin",
+    "Could not reach the update server.": "Güncelleme sunucusuna ulaşılamadı.",
+    "Could not open the downloaded update.": "İndirilen güncelleme açılamadı.",
+    "The downloaded update is not signed by the developer, so it was not installed.":
+        "İndirilen güncelleme geliştirici tarafından imzalanmamış, bu yüzden yüklenmedi.",
+    "The downloaded version is not newer than the installed one.": "İndirilen sürüm, yüklü olandan daha yeni değil.",
+    "Could not prepare the update: %@": "Güncelleme hazırlanamadı: %@",
+    "The app could not be replaced automatically. The new version has been opened; drag it into the Applications folder.":
+        "Uygulama otomatik olarak değiştirilemedi. Yeni sürüm açıldı; onu Uygulamalar klasörüne sürükleyin.",
+    "YUCE Cleaner %@ is available.": "YUCE Cleaner %@ yayınlandı.",
+    "Update…": "Güncelle…",
+    "Version %@": "Sürüm %@",
+    "Checking…": "Denetleniyor…",
 ]
 
 // MARK: - Português (Brasil)
@@ -306,8 +337,8 @@ let ptBRStrings: [String: String] = [
     "Show in Finder": "Mostrar no Finder",
     "Delete…": "Apagar…",
     "Some folders could not be read: %@": "Algumas pastas não puderam ser lidas: %@",
-    "Add YUCE Mac Cleaner in System Settings › Privacy & Security › Full Disk Access, then reopen the app.":
-        "Adicione o YUCE Mac Cleaner em Ajustes do Sistema › Privacidade e Segurança › Acesso Total ao Disco e abra o app novamente.",
+    "Add YUCE Cleaner in System Settings › Privacy & Security › Full Disk Access, then reopen the app.":
+        "Adicione o YUCE Cleaner em Ajustes do Sistema › Privacidade e Segurança › Acesso Total ao Disco e abra o app novamente.",
     "Open Settings": "Abrir Ajustes",
 
     "No snapshots": "Nenhum snapshot",
@@ -350,4 +381,34 @@ let ptBRStrings: [String: String] = [
     "%ld items selected · %@": "%ld itens selecionados · %@",
     "Delete %ld items?": "Apagar %ld itens?",
     "\n\nTotal: %@": "\n\nTotal: %@",
+
+    "Check for Updates…": "Verificar Atualizações…",
+    "Automatically Check for Updates": "Verificar Atualizações Automaticamente",
+    "A new version of YUCE Cleaner is available!": "Uma nova versão do YUCE Cleaner está disponível!",
+    "YUCE Cleaner %@ is available — you have %@. Would you like to install it now?":
+        "O YUCE Cleaner %@ está disponível — você tem a versão %@. Deseja instalá-lo agora?",
+    "Release Notes": "Notas da Versão",
+    "Skip This Version": "Ignorar Esta Versão",
+    "Remind Me Later": "Lembrar Mais Tarde",
+    "Install and Relaunch": "Instalar e Reabrir",
+    "Downloading… %ld%%": "Baixando… %ld%%",
+    "Installing…": "Instalando…",
+    "View on GitHub": "Ver no GitHub",
+    "You're up to date!": "Você está atualizado!",
+    "YUCE Cleaner %@ is the latest version.": "O YUCE Cleaner %@ é a versão mais recente.",
+    "Update failed": "Falha na atualização",
+    "Open Download Page": "Abrir Página de Download",
+    "Install the update manually": "Instale a atualização manualmente",
+    "Could not reach the update server.": "Não foi possível acessar o servidor de atualizações.",
+    "Could not open the downloaded update.": "Não foi possível abrir a atualização baixada.",
+    "The downloaded update is not signed by the developer, so it was not installed.":
+        "A atualização baixada não está assinada pelo desenvolvedor, por isso não foi instalada.",
+    "The downloaded version is not newer than the installed one.": "A versão baixada não é mais recente que a instalada.",
+    "Could not prepare the update: %@": "Não foi possível preparar a atualização: %@",
+    "The app could not be replaced automatically. The new version has been opened; drag it into the Applications folder.":
+        "Não foi possível substituir o app automaticamente. A nova versão foi aberta; arraste-a para a pasta Aplicativos.",
+    "YUCE Cleaner %@ is available.": "O YUCE Cleaner %@ está disponível.",
+    "Update…": "Atualizar…",
+    "Version %@": "Versão %@",
+    "Checking…": "Verificando…",
 ]

@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Builds "YUCE Mac Cleaner.app" (universal: Apple silicon + Intel) from the Swift sources.
+# Builds "YUCE Cleaner.app" (universal: Apple silicon + Intel) from the Swift sources.
 #
 #   ./build.sh                        ad-hoc signed, for local use
 #   SIGN_ID="Developer ID Application: …" ./build.sh
@@ -7,11 +7,11 @@
 set -e
 cd "$(dirname "$0")"
 
-VERSION="${VERSION:-1.1.0}"
+VERSION="${VERSION:-1.2.0}"
 BUILD="$(git rev-list --count HEAD 2>/dev/null || echo 1)"
 
-APP="YUCE Mac Cleaner.app"
-EXE="YUCEMacCleaner"
+APP="YUCE Cleaner.app"
+EXE="YUCECleaner"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
@@ -29,9 +29,9 @@ cat > "$APP/Contents/Info.plist" <<PLIST
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <key>CFBundleName</key><string>YUCE Mac Cleaner</string>
-  <key>CFBundleDisplayName</key><string>YUCE Mac Cleaner</string>
-  <key>CFBundleIdentifier</key><string>com.bariscagriyuce.yucemaccleaner</string>
+  <key>CFBundleName</key><string>YUCE Cleaner</string>
+  <key>CFBundleDisplayName</key><string>YUCE Cleaner</string>
+  <key>CFBundleIdentifier</key><string>com.bariscagriyuce.yucecleaner</string>
   <key>CFBundleExecutable</key><string>$EXE</string>
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$VERSION</string>
@@ -52,7 +52,7 @@ PLIST
 write_lproj() {
   mkdir -p "$APP/Contents/Resources/$1.lproj"
   cat > "$APP/Contents/Resources/$1.lproj/InfoPlist.strings" <<STRINGS
-"CFBundleDisplayName" = "YUCE Mac Cleaner";
+"CFBundleDisplayName" = "YUCE Cleaner";
 "NSAppleEventsUsageDescription" = "$2";
 STRINGS
 }
@@ -62,7 +62,7 @@ write_lproj pt-BR "É necessário acesso ao Finder para esvaziar a Lixeira."
 
 if [[ -n "$SIGN_ID" ]]; then
   codesign --force --timestamp --options runtime \
-    --entitlements Resources/YUCEMacCleaner.entitlements \
+    --entitlements Resources/YUCECleaner.entitlements \
     --sign "$SIGN_ID" "$APP"
   codesign --verify --strict --deep --verbose=1 "$APP"
 else
